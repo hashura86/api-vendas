@@ -11,7 +11,8 @@
     "paths": {
       "@module/*": ["./src/modules/*"],
       "@shared/*": ["./src/shared/*"],
-      "@config/*": ["./src/config/*"]
+      "@config/*": ["./src/config/*"],
+      "@middleware/*": ["./src/middlewares/*"]
     },
     "resolveJsonModule": true,
     "esModuleInterop": true,
