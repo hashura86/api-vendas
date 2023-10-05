@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "module": "commonjs",
+    "lib": ["ES6"],
+    "allowJs": true,
+    "outDir": "./dist",
+    "rootDir": "./",
+    "strict": true,
+    "baseUrl": "./",
+    // "paths": {
+    // 	"@module/*": ["./src/app/modules/*"],
+    // 	"@shared/*": ["./src/app/shared/*"],
+    // 	"@config/*": ["./src/config/*"],
+    // 	"@migration/*": ["./src/migrations/*"],
+    // 	"@middleware/*": ["./src/app/middlewares/*"]
+    // },
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": ["src/**/*.ts", "src/config/database.js"],
+  "migrations": ["migrations/*.js"]
+}
