@@ -12,7 +12,7 @@
       "@module/*": ["./src/modules/*"],
       "@shared/*": ["./src/shared/*"],
       "@config/*": ["./src/config/*"],
-      "@middleware/*": ["./src/middlewares/*"]
+      "@middleware/*": ["src/shared/middlewares/*"]
     },
     "resolveJsonModule": true,
     "esModuleInterop": true,

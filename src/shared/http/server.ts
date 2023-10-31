@@ -4,7 +4,7 @@ import 'express-async-errors'
 import express from 'express'
 import cors from 'cors'
 import routes from './routes'
-import middleware from '@middleware/middleware'
+import middleware from '@shared/middlewares/middleware'
 
 const app = express()
 
