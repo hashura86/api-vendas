@@ -5,6 +5,7 @@ import express from 'express'
 import cors from 'cors'
 import routes from './routes'
 import middleware from '@shared/middlewares/middleware'
+import '@shared/typeorm'
 
 const app = express()
 
