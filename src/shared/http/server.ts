@@ -1,11 +1,11 @@
 import 'reflect-metadata'
-import 'express-async-errors'
-
 import express from 'express'
+import 'express-async-errors'
 import cors from 'cors'
 import routes from './routes'
 import middleware from '@shared/middlewares/middleware'
 import '@shared/typeorm'
+// import AppError from '@shared/exceptions/AppError'
 
 const app = express()
 
