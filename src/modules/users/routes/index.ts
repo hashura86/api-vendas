@@ -2,15 +2,17 @@ import { Router } from 'express'
 import { celebrate, Joi, Segments } from 'celebrate'
 import UserController from '../controllers/UserController'
 import isAuthenticated from '@shared/middlewares/isAuthenticated'
-import uploadConfig from '@config/uploads'
+import uploadConfig from '@config/upload'
 import multer from 'multer'
 import UserAvatarController from '../controllers/UserAvatarController'
+import ForgotPasswordController from '../controllers/ForgotPasswordController'
 
 const upload = multer(uploadConfig)
 
 const usersRouter = Router()
 const usersController = new UserController()
 const usersAvatarController = new UserAvatarController()
+const forgotPasswordController = new ForgotPasswordController()
 
 usersRouter.get('/', isAuthenticated, usersController.index)
 
@@ -27,5 +29,15 @@ usersRouter.post(
 )
 
 usersRouter.patch('/avatar', isAuthenticated, upload.single('avatar'), usersAvatarController.update)
+
+usersRouter.post(
+  '/password',
+  // celebrate({
+  //   [Segments.BODY]: {
+  //     email: Joi.string().email().required(),
+  //   },
+  // }),
+  forgotPasswordController.create,
+)
 
 export default usersRouter

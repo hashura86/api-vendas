@@ -3,7 +3,7 @@ import User from '../typeorm/entities/User'
 import UserRepository from '../typeorm/repositories/UserRepository'
 import AppError from '@shared/exceptions/AppError'
 import path from 'path'
-import uploadConfig from '@config/uploads'
+import uploadConfig from '@config/upload'
 import fs from 'fs'
 
 interface IRequest {
