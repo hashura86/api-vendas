@@ -2,6 +2,7 @@ import AppError from '@shared/exceptions/AppError'
 import { getCustomRepository } from 'typeorm'
 import UserRepository from '../typeorm/repositories/UserRepository'
 import UserTokenRepository from '../typeorm/repositories/UserTokenRepository'
+import EtherealMail from '@config/mail/EtherealMail'
 
 interface IRequest {
   email: string
@@ -17,7 +18,10 @@ class ForgotPasswordService {
 
     const token = await userTokensRepository.generate(user.id)
 
-    console.log(token)
+    await EtherealMail.sendEmail({
+      to: email,
+      body: `change password requested successfully: ${token?.token}`,
+    })
   }
 }
 

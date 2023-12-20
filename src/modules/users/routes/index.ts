@@ -16,7 +16,7 @@ const usersAvatarController = new UserAvatarController()
 const forgotPasswordController = new ForgotPasswordController()
 const resetPasswordController = new ResetPasswordController()
 
-usersRouter.get('/', isAuthenticated, usersController.index)
+usersRouter.get('/', usersController.index)
 
 usersRouter.post(
   '/',
