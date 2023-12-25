@@ -1,13 +1,32 @@
 import nodemailer from 'nodemailer'
+import HandlebarsTemplate from './HandlebarsTemplate'
+
+interface IVariables {
+  [key: string]: string | number
+}
+
+interface ITemplate {
+  file: string
+  variables: IVariables
+}
+
+interface IContact {
+  name: string
+  email: string
+}
 
 interface IRequest {
-  to: string
-  body: string
+  to: IContact
+  from?: IContact
+  subject: string
+  templateData: ITemplate
 }
 
 export default class EtherealMail {
-  static async sendEmail({ to, body }: IRequest): Promise<void> {
+  static async sendEmail({ to, from, subject, templateData }: IRequest): Promise<void> {
     const account = await nodemailer.createTestAccount()
+
+    const mailTemplate = new HandlebarsTemplate()
 
     const transporter = nodemailer.createTransport({
       host: account.smtp.host,
@@ -20,10 +39,16 @@ export default class EtherealMail {
     })
 
     const message = await transporter.sendMail({
-      from: 'jojoribs@comoqescrev.br',
-      to,
-      subject: 'password recovery',
-      text: body,
+      from: {
+        name: from?.name || 'how to writ',
+        address: from?.email || 'jojoribs@comoqescrev.br',
+      },
+      to: {
+        name: to.name,
+        address: to.email,
+      },
+      subject,
+      html: await mailTemplate.parse(templateData),
     })
 
     console.log('message sent: %s', message.messageId)
