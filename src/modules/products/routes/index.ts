@@ -4,11 +4,11 @@ import { celebrate, Joi, Segments } from 'celebrate'
 
 const productController = new ProductController()
 
-const productRoutes = Router()
+const productRouter = Router()
 
-productRoutes.get('/', productController.index)
+productRouter.get('/', productController.index)
 
-productRoutes.get(
+productRouter.get(
   '/:id',
   celebrate({
     [Segments.PARAMS]: {
@@ -18,7 +18,7 @@ productRoutes.get(
   productController.getOne,
 )
 
-productRoutes.post(
+productRouter.post(
   '/',
   celebrate({
     [Segments.BODY]: {
@@ -30,7 +30,7 @@ productRoutes.post(
   productController.create,
 )
 
-productRoutes.put(
+productRouter.put(
   '/:id',
   celebrate({
     [Segments.BODY]: {
@@ -45,7 +45,7 @@ productRoutes.put(
   productController.update,
 )
 
-productRoutes.delete(
+productRouter.delete(
   '/:id',
   celebrate({
     [Segments.PARAMS]: {
@@ -55,4 +55,4 @@ productRoutes.delete(
   productController.delete,
 )
 
-export default productRoutes
+export default productRouter
