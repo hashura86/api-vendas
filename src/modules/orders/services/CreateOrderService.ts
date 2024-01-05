@@ -27,8 +27,8 @@ class CreateOrderService {
     const productsExists = await productsRepository.findAllByIds(products)
     if (!productsExists.length) throw new AppError('Products not found!')
 
-    const existsProductsIds = productsExists.map(product => product.id)
-    const checkInexistentProducts = products.filter(product => !existsProductsIds.includes(product.id))
+    const productsExistsIds = productsExists.map(product => product.id)
+    const checkInexistentProducts = products.filter(product => !productsExistsIds.includes(product.id))
     if (checkInexistentProducts.length) throw new AppError(`Could not find product ${checkInexistentProducts[0].id}.`)
 
     const quantityAvailable = products.filter(product => productsExists.filter(p => p.id === product.id)[0].quantity < product.quantity)
