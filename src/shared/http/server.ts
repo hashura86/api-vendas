@@ -20,7 +20,6 @@ app.use(routes)
 app.use(errors())
 app.use(middleware.errorHandler)
 
-
 app.listen(3000, () => {
   console.log(`server started on ${process.env.API_URL}`)
 })
