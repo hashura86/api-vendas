@@ -2,7 +2,7 @@ import { getCustomRepository } from 'typeorm'
 import { ProductRepository } from '../typeorm/repositories/ProductsRepository'
 import AppError from '@shared/exceptions/AppError'
 import Product from '../typeorm/entities/Product'
-import RedisCache from '@shared/cache/RedisCache'
+import redisCache from '@shared/cache/RedisCache'
 
 interface IRequest {
   name: string
@@ -15,8 +15,6 @@ class CreateProductService {
     const productRepository = getCustomRepository(ProductRepository)
     const productExists = await productRepository.findByName(name)
     if (productExists) throw new AppError('product already exists')
-
-    const redisCache = new RedisCache()
 
     const product = productRepository.create({ name, price, quantity })
 
